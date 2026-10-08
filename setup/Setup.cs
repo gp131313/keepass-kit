@@ -77,6 +77,7 @@ public static class Setup
         string argLine = "-NoProfile -ExecutionPolicy Bypass -File \"" + Path.Combine(dir, "install.ps1") + "\" -NoFinishBox -Dir \"" + dir + "\" " + psArgs;
         ProcessStartInfo psi = new ProcessStartInfo(ps, argLine);
         psi.UseShellExecute = false;
+        psi.EnvironmentVariables.Remove("PSModulePath");  // пути модулей PowerShell 7 ломают Windows PowerShell 5.1
         psi.CreateNoWindow = true;
         psi.RedirectStandardOutput = true;
         psi.RedirectStandardError = true;
