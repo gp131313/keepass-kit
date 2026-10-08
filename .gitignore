@@ -1,0 +1,6 @@
+# Установщик KeePass и плагины в репозиторий не кладём: build.ps1 скачивает их в setup/payload по kit.json,
+# готовый exe — в релизе (GitHub Releases)
+setup/payload/
+*.exe
+*.log
+*.bak
