@@ -136,7 +136,7 @@ public class Wizard : Form
         SuspendLayout();
         AutoScaleMode = AutoScaleMode.None;
         using (Graphics g = Graphics.FromHwnd(IntPtr.Zero)) scale = g.DpiX / 96F;
-        ClientSize = Z(500, 344);
+        ClientSize = Z(500, 384);
         Text = T("Установка ", "Setup — ") + Setup.Title;
         Font = new Font("Segoe UI", 9F);
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -149,12 +149,12 @@ public class Wizard : Form
         header.Controls.Add(head); header.Controls.Add(sub);
         Label line1 = new Label(); line1.BorderStyle = BorderStyle.Fixed3D; line1.Location = P(0, 66); line1.Size = Z(500, 2);
 
-        body = new Label(); body.Location = P(24, 82); body.Size = Z(452, 204);
+        body = new Label(); body.Location = P(24, 82); body.Size = Z(452, 244);
         bar = new ProgressBar(); bar.Style = ProgressBarStyle.Marquee; bar.MarqueeAnimationSpeed = 30; bar.Location = P(24, 150); bar.Size = Z(452, 18); bar.Visible = false;
 
-        Label line2 = new Label(); line2.BorderStyle = BorderStyle.Fixed3D; line2.Location = P(0, 292); line2.Size = Z(500, 2);
-        next = new Button(); next.Location = P(300, 306); next.Size = Z(88, 26);
-        cancel = new Button(); cancel.Text = T("Отмена", "Cancel"); cancel.Location = P(400, 306); cancel.Size = Z(88, 26);
+        Label line2 = new Label(); line2.BorderStyle = BorderStyle.Fixed3D; line2.Location = P(0, 332); line2.Size = Z(500, 2);
+        next = new Button(); next.Location = P(300, 346); next.Size = Z(88, 26);
+        cancel = new Button(); cancel.Text = T("Отмена", "Cancel"); cancel.Location = P(400, 346); cancel.Size = Z(88, 26);
         next.Click += delegate { if (page == 0) StartInstall(); else Close(); };
         cancel.Click += delegate { Close(); };
         AcceptButton = next; CancelButton = cancel;
@@ -180,18 +180,20 @@ public class Wizard : Form
         {
             case 0:
                 head.Text = T("Установка KeePass с плагинами и настройками", "KeePass with plugins and settings");
-                sub.Text = T("KeePass 2.x, KeeAgent, вход по отпечатку", "KeePass 2.x, KeeAgent, fingerprint unlock");
+                sub.Text = T("KeePass 2.x, KeeAgent, значки сайтов, вход по отпечатку", "KeePass 2.x, KeeAgent, site icons, fingerprint unlock");
                 body.Text = T("Установщик приведёт KeePass на этом компьютере к одному виду:\n\n"
                             + "•  поставит или обновит KeePass;\n"
-                            + "•  поставит плагины KeeAgent (SSH-агент) и KeePassWinHello (вход по отпечатку, если есть сканер);\n"
-                            + "•  уберёт устаревший KeePassHttp;\n"
+                            + "•  поставит плагины KeeAgent (SSH-агент), Yet Another Favicon Downloader (значки сайтов) "
+                            + "и KeePassWinHello (вход по отпечатку, если есть сканер);\n"
+                            + "•  уберёт устаревшие KeePassHttp и KeePassFaviconDownloader;\n"
                             + "•  включит запуск свёрнутым и заблокированным, автозапуск, откроет базу из Dropbox;\n"
                             + "•  выключит службу Windows ssh-agent и поставит сторожа, чтобы KeeAgent не терял канал.\n\n"
                             + "Если KeePass открыт, он будет закрыт и запущен снова.",
                               "Setup brings KeePass on this computer to a standard state:\n\n"
                             + "•  installs or updates KeePass;\n"
-                            + "•  installs KeeAgent (SSH agent) and KeePassWinHello (fingerprint unlock, if a reader is present);\n"
-                            + "•  removes the obsolete KeePassHttp;\n"
+                            + "•  installs KeeAgent (SSH agent), Yet Another Favicon Downloader (site icons) "
+                            + "and KeePassWinHello (fingerprint unlock, if a reader is present);\n"
+                            + "•  removes the obsolete KeePassHttp and KeePassFaviconDownloader;\n"
                             + "•  start minimized and locked, autostart, opens the database from Dropbox;\n"
                             + "•  disables the Windows ssh-agent service and installs a guard so KeeAgent keeps the pipe.\n\n"
                             + "If KeePass is open, it will be closed and started again.");

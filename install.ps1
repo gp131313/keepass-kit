@@ -51,6 +51,7 @@ function Get-Url([string]$Url, [string]$Out) {
 
 # Файл из kit.json: сначала рядом со скриптом (распакован из exe), иначе скачать — напрямую или из zip
 function Get-Payload($Item) {
+  if ($FetchOnly) { $cached = Join-Path $FetchOnly $Item.file; if (Test-Hash $cached $Item.sha256) { return $cached } }
   $local = Join-Path $Dir $Item.file
   if (Test-Hash $local $Item.sha256) { return $local }
   if (Test-Path -LiteralPath $local) { throw "$($Item.file): SHA256 не совпадает с kit.json" }

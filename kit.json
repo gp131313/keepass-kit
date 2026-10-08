@@ -25,9 +25,17 @@
       "sha256": "cc3decd67857d11031690f06a35c3cd555eed70f77806d909ae8e5e9a66f5e64",
       "url": "https://github.com/sirAndros/KeePassWinHello/releases/download/v3.3.1/KeePassWinHelloPlugin.plgx",
       "when": "biometric"
+    },
+    {
+      "name": "Yet Another Favicon Downloader",
+      "version": "1.2.5.0",
+      "file": "YetAnotherFaviconDownloader.plgx",
+      "sha256": "79a0fac0569aa2ec3d40e5678d8e6c6f17a5b98b481f9c8545216599921f55ee",
+      "url": "https://github.com/navossoc/KeePass-Yet-Another-Favicon-Downloader/releases/download/v1.2.5.0/YetAnotherFaviconDownloader.plgx",
+      "when": "always"
     }
   ],
-  "removePlugins": [ "KeePassHttp.plgx", "KeePassHttp.dll", "KeeAgent.dll" ],
+  "removePlugins": [ "KeePassHttp.plgx", "KeePassHttp.dll", "KeeAgent.dll", "KeePassFaviconDownloader.plgx" ],
   "settings": [
     { "path": "Application/Start/MinimizedAndLocked", "value": "true" },
     { "path": "Application/Start/CheckForUpdate", "value": "false" },

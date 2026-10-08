@@ -11,7 +11,8 @@
 | KeePass | ставит KeePass 2.61.1, если его нет или версия старше; более новую не трогает |
 | KeeAgent 0.13.8 | SSH-агент из базы KeePass для `ssh.exe` (канал Windows OpenSSH) |
 | KeePassWinHello 3.3.1 | вход в базу отпечатком, лицом или PIN Windows Hello; только если есть сканер или камера Windows Hello |
-| Лишние плагины | удаляет `KeePassHttp` (заброшен, слабый протокол) и дубль `KeeAgent.dll` |
+| Yet Another Favicon Downloader 1.2.5.0 | значки сайтов у записей |
+| Лишние плагины | удаляет `KeePassHttp` (заброшен, слабый протокол), старый `KeePassFaviconDownloader` и дубль `KeeAgent.dll` |
 | Настройки KeePass | запуск свёрнутым и заблокированным, без проверки обновлений (обновляет [win-auto-update](https://github.com/gp131313/win-auto-update)); KeeAgent: канал Windows OpenSSH, разблокировка базы по запросу |
 | База | если в конфиге нет последней базы, ищет единственный `.kdbx` в папке Dropbox и делает его последним открытым |
 | Автозапуск | KeePass стартует вместе с Windows |
@@ -75,7 +76,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\setup\build.ps1
 - База KeePass в комплект не входит. Dropbox должен быть установлен и досинхронизирован; файл базы — «Доступен в автономном режиме».
 - Сторож пишет в `C:\ClaudeScripts\sshagent-guard` (путь задаётся в `kit.json`). Убрать: `Unregister-ScheduledTask 'SSH-Agent Guard (KeeAgent)' -Confirm:$false` от администратора и удалить папку.
 - Windows Hello пускает и по PIN: база на этом компьютере защищена не сильнее PIN Windows.
-- Плагина значков сайтов в комплекте нет.
 
 ## Поддержать
 
@@ -87,8 +87,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\setup\build.ps1
 
 ## Лицензия
 
-Скрипты и установщик — [MIT](LICENSE). Вложенные программы распространяются без изменений на условиях их авторов: KeePass — GPL-2.0 (Dominik Reichl), KeeAgent — GPL-2.0 (David Lechner), KeePassWinHello — MIT (sirAndros).
+Скрипты и установщик — [MIT](LICENSE). Вложенные программы распространяются без изменений на условиях их авторов: KeePass — GPL-2.0 (Dominik Reichl), KeeAgent — GPL-2.0 (David Lechner), KeePassWinHello — MIT (sirAndros), Yet Another Favicon Downloader — MIT (navossoc).
 
 ## English
 
-One-shot installer that brings KeePass 2.x on a Windows PC to a standard state: installs or updates KeePass (official signed installer), adds KeeAgent (SSH agent over the Windows OpenSSH pipe) and KeePassWinHello (Windows Hello unlock, only when a biometric device is present), removes KeePassHttp, sets start minimized and locked, autostart and the last database from Dropbox, and disables the Windows `ssh-agent` service with a SYSTEM guard task so KeeAgent keeps the pipe. Versions and SHA256 are pinned in `kit.json`; re-running is safe. Download `KeePass-Kit-Setup.exe` from Releases, or run `Install.cmd` from the repo; `install.ps1 -DryRun` shows what would change. Build: `setup\build.ps1` (csc from .NET Framework, no SDK). Scripts are MIT; bundled KeePass and KeeAgent are GPL-2.0, KeePassWinHello is MIT.
+One-shot installer that brings KeePass 2.x on a Windows PC to a standard state: installs or updates KeePass (official signed installer), adds KeeAgent (SSH agent over the Windows OpenSSH pipe), KeePassWinHello (Windows Hello unlock, only when a biometric device is present) and Yet Another Favicon Downloader, removes KeePassHttp and the old KeePassFaviconDownloader, sets start minimized and locked, autostart and the last database from Dropbox, and disables the Windows `ssh-agent` service with a SYSTEM guard task so KeeAgent keeps the pipe. Versions and SHA256 are pinned in `kit.json`; re-running is safe. Download `KeePass-Kit-Setup.exe` from Releases, or run `Install.cmd` from the repo; `install.ps1 -DryRun` shows what would change. Build: `setup\build.ps1` (csc from .NET Framework, no SDK). Scripts are MIT; bundled KeePass and KeeAgent are GPL-2.0, KeePassWinHello and Yet Another Favicon Downloader are MIT.
